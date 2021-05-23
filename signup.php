@@ -3,6 +3,8 @@
 session_start();
 session_regenerate_id(true);
 
+require_once './classes/UserLogic.php';
+
 $err[] = [];
 
 $token = filter_input(INPUT_POST, 'csrf_token');
@@ -38,4 +40,6 @@ if (count($err) !== 0) {
     exit();
 } else {
     //新規登録処理
+    UserLogic::createUser($_POST);
+    header('Location: user_info.php');
 }
