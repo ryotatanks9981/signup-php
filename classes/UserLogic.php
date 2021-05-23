@@ -23,4 +23,18 @@ class UserLogic {
             return $result;
         }
     }
+
+     /**
+     * ログインチェック
+     * @param void
+     * @return bool $result
+     */
+
+    public static function checkLogin() {
+        $result = false;
+        if (isset($_SESSION['login_user']['id']) && isset($_SESSION['login_user'])) {
+            return $result = true;
+        }
+        return $result;
+    }
 }

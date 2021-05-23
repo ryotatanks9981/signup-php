@@ -1,3 +1,26 @@
+<?php
+
+require_once './classes/UserLogic.php';
+
+$result = UserLogic::checkLogin();
+
+if (!$result)  {
+    $_SESSION['err']['login_err'] = "ユーザを登録してログインしてください。";
+    header("Location: signup_form.php" );
+    return;
+}
+
+if ($username = filter_input(INPUT_GET, "usrname")) {
+    header("Location: signup_form.php");
+    exit();
+}
+if ($email = filter_input(INPUT_GET, "email")) {
+    header("Location: signup_form.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,6 +30,7 @@
     <title>User Info</title>
 </head>
 <body>
-    
+    <p>username: <?php echo $username ?></p>
+    <p>email: <?php echo $email ?></p>
 </body>
 </html>

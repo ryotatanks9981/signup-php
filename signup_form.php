@@ -20,6 +20,9 @@ session_destroy();
     <title>Sign Up</title>
 </head>
 <body>
+    <?php if(isset($err['login_err'])) : ?>
+        <p style="color: red;"><?php echo $err['login_err']; ?></p>
+    <?php endif; ?>
     <form action="signup.php" method="post">
         <?php if(isset($err['username'])) : ?>
             <p style="color: red;"><?php echo $err['username']; ?></p>

@@ -41,5 +41,5 @@ if (count($err) !== 0) {
 } else {
     //新規登録処理
     UserLogic::createUser($_POST);
-    header('Location: user_info.php');
+    header("Location: user_info.php?username=$username&email=$email");
 }
