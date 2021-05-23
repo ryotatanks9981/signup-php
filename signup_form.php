@@ -3,6 +3,14 @@ session_start();
 session_regenerate_id(true);
 
 require_once './functions.php';
+require_once './classes/UserLogic.php';
+
+$result = UserLogic::checkLogin();
+
+if ($result) {
+    header("Location: mypage.php");
+    return;
+}
 
 $err = $_SESSION['err'];
 
