@@ -5,6 +5,15 @@ session_regenerate_id(true);
 
 $err[] = [];
 
+$token = filter_input(INPUT_POST, 'csrf_token');
+//トークンがない、もしくは一致しない場合、処理を中止
+if(isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
+    exit('不正なリクエスと'); 
+}
+//セッションが消える（２回目に送信されてきた時にセッションがないから二重送信対策になる。）
+unset($_SESSION['csrf_token']);
+
+
 if (!$username = filter_input(INPUT_POST, 'username')) {
     $err['username'] = "ユーザー名を入力してください";
 }
