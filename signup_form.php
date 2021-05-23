@@ -2,7 +2,12 @@
 session_start();
 session_regenerate_id(true);
 
+require_once './functions.php';
+
 $err = $_SESSION['err'];
+
+$_SESSION = array();
+session_destroy();
 
 ?>
 
@@ -32,6 +37,7 @@ $err = $_SESSION['err'];
             <p style="color: red;"><?php echo $err['conf_password']; ?></p>
         <?php endif; ?>
         <p><label for="conf_password"style="width: 100px;">確認用パスワード:</label><input type="password" name="conf_password"></p>
+        <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
         <p><input type="submit" value="新規登録"></p>
     </form>
 </body>
